@@ -1,0 +1,66 @@
+{
+  "name": "cartogram-chart",
+  "version": "1.3.1",
+  "description": "Cartogram web component for visualizing geographical data by distorting a TopoJson topology",
+  "type": "module",
+  "unpkg": "dist/cartogram-chart.min.js",
+  "jsdelivr": "dist/cartogram-chart.min.js",
+  "main": "dist/cartogram-chart.mjs",
+  "module": "dist/cartogram-chart.mjs",
+  "exports": {
+    "umd": "./dist/cartogram-chart.min.js",
+    "default": "./dist/cartogram-chart.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasturiano/cartogram-chart.git"
+  },
+  "keywords": [
+    "cartogram",
+    "geographical",
+    "visualization",
+    "distortion",
+    "topojson"
+  ],
+  "author": {
+    "name": "Vasco Asturiano",
+    "url": "https://github.com/vasturiano"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vasturiano/cartogram-chart/issues"
+  },
+  "homepage": "https://github.com/vasturiano/cartogram-chart",
+  "scripts": {
+    "build": "rimraf dist && rollup -c",
+    "dev": "rollup -w -c",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "accessor-fn": "1",
+    "d3-geo": "2 - 3",
+    "d3-selection": "2 - 3",
+    "d3-transition": "2 - 3",
+    "kapsule": "^1.14",
+    "topogram": "^1.0.1"
+  },
+  "files": [
+    "dist/**/*",
+    "example/**/*"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.4.0",
+    "postcss": "^8.4.21",
+    "rimraf": "^4.1.2",
+    "rollup": "^3.14.0",
+    "rollup-plugin-postcss": "^4.0.2"
+  },
+  "engines": {
+    "node": ">=12"
+  }
+}

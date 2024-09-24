@@ -1,0 +1,33 @@
+<head>
+  <script src="//unpkg.com/d3@4"></script>
+  <script src="//unpkg.com/cartogram-chart"></script>
+<!--  <script src="../../dist/cartogram-chart.js"></script>-->
+</head>
+
+<body>
+  <div id="world"></div>
+
+  <script>
+    fetch('./ne_110m_admin_0_countries.json')
+      .then(r => r.json())
+      .then(world => {
+        // exclude antarctica
+        world.objects.countries.geometries.splice(
+          world.objects.countries.geometries.findIndex(d => d.properties.ISO_A2 === 'AQ'),
+          1
+        );
+
+        const colorScale = d3.scaleOrdinal([...d3.schemeCategory20, ...d3.schemeCategory20b, ...d3.schemeCategory20c]);
+
+        Cartogram()
+          .topoJson(world)
+          .topoObjectName('countries')
+          .iterations(120)
+          .value(({ properties }) => properties.POP_EST)
+          .color(({ properties: { ISO_A2 } }) => colorScale(ISO_A2))
+          .label(({ properties: p }) => `Population of ${p.NAME} (${p.ISO_A2})`)
+          .valFormatter(d3.format('.3s'))
+          (document.getElementById('world'));
+      });
+  </script>
+</body>
